@@ -1,5 +1,5 @@
-selenium <- new.env()
-assign(".port", NULL, envir = selenium)
+seleniumEnv <- new.env()
+assign(".port", NULL, envir = seleniumEnv)
 
 #' Selenium Server
 #'
@@ -88,7 +88,7 @@ selenium.start <- function(
     )
 
     cat("\n")
-    assign(".port", as.integer(c(port = port, port2 = port2)), envir = selenium)
+    assign(".port", as.integer(c(port = port, port2 = port2)), envir = seleniumEnv)
     return(as.integer(c(port = port, port2 = port2)))
   } else {
     if (!any(stringr::str_detect(x, paste0(port, "->4444"))) &
@@ -105,7 +105,7 @@ selenium.start <- function(
         wait = TRUE
       )
 
-      assign(".port", as.integer(c(port = port, port2 = port2)), envir = selenium)
+      assign(".port", as.integer(c(port = port, port2 = port2)), envir = seleniumEnv)
       return(as.integer(c(port = port, port2 = port2)))
     } else {
       message("There is already a docker in progress in these ports.")
@@ -115,7 +115,7 @@ selenium.start <- function(
 
 # This function ends a selenium docker
 selenium.end <- function(port, port2) {
-  .port <- get(".port", envir = selenium)
+  .port <- get(".port", envir = seleniumEnv)
 
   if (!is.null(.port)) {
     port <- .port[1]
@@ -158,6 +158,6 @@ selenium.end <- function(port, port2) {
     ))
   )
 
-  assign(".port", NULL, envir = selenium)
+  assign(".port", NULL, envir = seleniumEnv)
   return("Closed")
 }
