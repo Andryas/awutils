@@ -2,6 +2,5 @@
 
 export("%>%")
 export(formatNum)
-export(selenium)
-export(splitGroupEqual)
+export(seg)
 importFrom(magrittr,"%>%")

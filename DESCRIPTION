@@ -1,18 +1,18 @@
-Package: awutils
-Title: Andryas Waurzenczak utils.
+Package: aw
+Title: Andryas Waurzenczak - Useful Functions
 Version: 0.0.1
 Authors@R: 
     person(
       given = "Andryas",
       family = "Waurzenczak",
       role = c("aut", "cre"),
-      email = "Andryas@protonmail.com"
+      email = "Andryaas@gmail.com"
     )
 Description: 
 License: 
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports: 
     magrittr

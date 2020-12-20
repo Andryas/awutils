@@ -1,28 +1,29 @@
 #' Format a number
 #'
-#' Let numbers readble for humans.
+#' Let numbers readable for humans.
 #'
 #' @param x a numeric value
-#' @param smbl a symbol like R$
-#' @param signif digits to considering (Default: 1)
+#' @param symbol a symbol like R$
+#' @param digits digits to considering (Default: 1)
 #'
 #' @examples
 #'
 #' library(ggplot2)
 #' ggplot(cars, aes(x = dist, y = speed)) +
 #'  geom_point() +
-#'  scale_y_continuous(label = gFormatNum)
+#'  scale_y_continuous(label = formatNum)
 #'
 #' formatNum(seq(100000, 1000000, 100000))
 #'
 #' @export
-formatNum <- function(x = NULL, smbl = "", signif = 1) {
+formatNum <- function(x = NULL, symbol = "", digits = 1) {
   humanity <- function(y) {
     if (!is.na(y)) {
-      tn <- round(abs(y) / 1e12, signif)
-      b <- round(abs(y) / 1e9, signif)
-      m <- round(abs(y) / 1e6, signif)
-      k <- round(abs(y) / 1e3, signif)
+
+      tn <- round(abs(y) / 1e12, digits)
+      b <- round(abs(y) / 1e9, digits)
+      m <- round(abs(y) / 1e6, digits)
+      k <- round(abs(y) / 1e3, digits)
 
       if (y >= 0) {
         y_is_positive <- ""
@@ -31,15 +32,15 @@ formatNum <- function(x = NULL, smbl = "", signif = 1) {
       }
 
       if (k < 1) {
-        paste0(y_is_positive, smbl, round(abs(y), signif))
+        paste0(y_is_positive, symbol, round(abs(y), digits))
       } else if (m < 1) {
-        paste0(y_is_positive, smbl,  k , "k")
+        paste0(y_is_positive, symbol,  k , "k")
       } else if (b < 1) {
-        paste0(y_is_positive, smbl, m , "m")
+        paste0(y_is_positive, symbol, m , "m")
       } else if (tn < 1) {
-        paste0(y_is_positive, smbl, b , "bn")
+        paste0(y_is_positive, symbol, b , "bn")
       } else {
-        paste0(y_is_positive, smbl,  comma(tn), "tn")
+        paste0(y_is_positive, symbol,  comma(tn), "tn")
       }
     } else if (is.na(y) | is.null(y)) {
       "-"

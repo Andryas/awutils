@@ -4,24 +4,24 @@
 \alias{formatNum}
 \title{Format a number}
 \usage{
-formatNum(x = NULL, smbl = "", signif = 1)
+formatNum(x = NULL, symbol = "", digits = 1)
 }
 \arguments{
 \item{x}{a numeric value}
 
-\item{smbl}{a symbol like R$}
+\item{symbol}{a symbol like R$}
 
-\item{signif}{digits to considering (Default: 1)}
+\item{digits}{digits to considering (Default: 1)}
 }
 \description{
-Let numbers readble for humans.
+Let numbers readable for humans.
 }
 \examples{
 
 library(ggplot2)
 ggplot(cars, aes(x = dist, y = speed)) +
  geom_point() +
- scale_y_continuous(label = gFormatNum)
+ scale_y_continuous(label = formatNum)
 
 formatNum(seq(100000, 1000000, 100000))
 
